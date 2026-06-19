@@ -1,0 +1,25 @@
+<h1>Lista de Clientes</h1>
+
+<a routerLink="/clientes/cadastrar" class="cadastrar">Cadastrar</a>
+
+<table>
+    <thead>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
+        <th></th>
+    </thead>
+    <tbody>
+        @for(cliente of clientes(); track cliente.id){
+        <tr>
+            <td>{{cliente.nome}}</td>
+            <td>{{cliente.email}}</td>
+            <td>{{cliente.telefone}}</td>
+            <td>
+                <a class="editar" routerLink="/clientes/editar/{{cliente.id}}">Editar</a>
+                <button class="apagar" (click)="apagar(cliente.id)">Apagar</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

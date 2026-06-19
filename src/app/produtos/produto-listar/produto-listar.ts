@@ -11,9 +11,7 @@ import { ProdutoModel } from '../../models/produto.model';
 export class ProdutoListar {
   produtos = signal<ProdutoModel[]>([]);
 
-  // ngOnInit é uma função que é chamada quando o componente é inicializado
   ngOnInit() {
-    // chamar a função que carrega os produtos do LocalStorage
     this.carregarProdutos();
   }
 
@@ -26,7 +24,6 @@ export class ProdutoListar {
   })
 
   carregarProdutos(): void {
-    // Carregando do localStorage os produtos
     const produtosString = localStorage.getItem("produtos");
     if (produtosString === null) {
       return;
@@ -34,28 +31,11 @@ export class ProdutoListar {
 
     const produtosLista = JSON.parse(produtosString) as ProdutoModel[];
 
-    const produtosOrdenados = produtosLista.sort((x, y) => x.nome.localeCompare(y.nome))
-    // set permite alterar o valor por completo de um signal
+    const produtosOrdenados = produtosLista.sort((x, y) => x.nome.localeCompare(y.nome));
     this.produtos.set(produtosOrdenados);
   }
 
   apagar(id: string): void {
-    /*for (let i = 0; i < produtos.length; i++){
-        let produto = produtos[i];
-    } */
-    // this.produtos().forEach((produto, i) => {
-    //   if(produto.id === id){
-    //     this.produtos().splice(i, 1);
-
-    //     const produtosString = JSON.stringify(this.produtos());
-
-    //     localStorage.setItem("produtos", produtosString);
-    //     return;
-    //   }
-    // })
-
-    // filter permite filtrar de uma lista gerando uma nova lista com os dados filtrados
-    // update permite atualizar o signal
     this.produtos.update(produtos => produtos.filter(x => x.id !== id))
     const produtosString = JSON.stringify(this.produtos());
     localStorage.setItem("produtos", produtosString);

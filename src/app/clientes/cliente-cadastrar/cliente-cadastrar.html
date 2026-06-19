@@ -1,0 +1,17 @@
+<h1>Cadastro de Cliente</h1>
+
+<a routerLink="/clientes">Voltar</a>
+
+<label for="nome">Nome</label>
+<input type="text" [(ngModel)]="cliente().nome"
+    id="nome" placeholder="Digite o nome do cliente">
+
+<label for="email">E-mail</label>
+<input type="email" [(ngModel)]="cliente().email"
+    id="email" placeholder="Digite o e-mail do cliente">
+
+<label for="telefone">Telefone</label>
+<input type="tel" [(ngModel)]="cliente().telefone"
+    id="telefone" placeholder="Digite o telefone do cliente">
+
+<button (click)="salvar()">Salvar</button>
